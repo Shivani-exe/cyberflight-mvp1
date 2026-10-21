@@ -1,0 +1,13 @@
+{
+  "results\\alert_counts.csv": "751f4362786f5f27a34222a3acf65be6ad7b1274a0a31441cf701bc705556134",
+  "results\\held_out.csv": "e201cbc3e215970df3e5c8aefdc5f80fe3659e390d0a0485a71d09dae3ccf40a",
+  "results\\LIMITATIONS.md": "682cc092273ec28f2f440a90e0b18a39d97771cc71384d43db8d7bf1bca51e3e",
+  "results\\policy_by_cluster.csv": "1f122b368dd069dbb20fb050286d50fa99c2cc173e31e5917232484aee715abd",
+  "results\\policy_grid.csv": "f675ff1ba2436a54eed95ef145c789bb7c40cad4f747580c285d0053246c995c",
+  "results\\policy_pooled.csv": "1faced51bbae29d2cdf720aeedd5acffa73e9edf67d53b30ce5729ab2006388f",
+  "results\\reference_check.json": "e3a371f1f1dbfcf218ca3a4be4483428a65c0fec2e8fdd97ea55faab02313a1c",
+  "results\\static_row_level.csv": "044df7020fad909a4a4aa173259a281007d8d0895c72bd2c92f34bfa359573df",
+  "results\\static_seeds.csv": "48ea83d6b5bb181d9e5497386c07a1d3a776aaa80199117eada7ab5842fa6a27",
+  "app\\pages\\story.py": "55821a81d8310ccbcc1880b70225957e6558852a7210900ba845549917a3b817",
+  "app\\pages\\limitations.py": "1797fb6ed309c973ad276f5bca25e018ad8d7b65eecb04799f28efd11cc243cf"
+}

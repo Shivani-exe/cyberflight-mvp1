@@ -1,0 +1,8 @@
+{
+  "alert_counts": true,
+  "adaptive_cost": true,
+  "adaptive_kept": true,
+  "attack_rows": true,
+  "static_cost": true,
+  "static_kept": true
+}

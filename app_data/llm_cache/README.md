@@ -1,0 +1,1 @@
+No genuine Gemini responses were provided. Missing entries use a clearly labeled fixed-policy fallback. Run `python scripts/build_llm_cache.py` locally with GEMINI_API_KEY to populate this folder with real model responses; never add credentials here.

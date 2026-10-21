@@ -1,0 +1,28 @@
+{
+  "story_seconds": 7.02,
+  "pages": {
+    "comparison": "passed",
+    "timeline": "passed",
+    "triage": "passed",
+    "ask": "passed",
+    "limitations": "passed"
+  },
+  "triage_fallback": "passed",
+  "offline_qa": "passed",
+  "warm_story_seconds": 0.069,
+  "pytest": "33 passed",
+  "reference_checks": "6 passed",
+  "live_gemini": "Live planner request succeeded with strict Pydantic validation after removing unsupported provider schema additionalProperties; grounded QA live behavior and batch evaluation remain untested.",
+  "github_publication": "not performed",
+  "cold_start_target_met": false,
+  "ui_regressions": {
+    "all_six_pages": "passed",
+    "triage_default_filter_na": "passed",
+    "heatmap_categories_and_static_variants": "passed",
+    "pooled_held_out_totals": "passed",
+    "equal_cluster_selection": "passed",
+    "cumulative_timeline": "passed",
+    "unsupported_qa_refusal": "passed",
+    "original_results_and_story_limitations_hashes": "unchanged"
+  }
+}
