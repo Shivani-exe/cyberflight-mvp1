@@ -21,6 +21,16 @@ Source: [`results/policy_pooled.csv`](results/policy_pooled.csv). Across cluster
 
 **These are four selected, clean-baseline attack windows, not a production trial.** The fixed policy was tuned on these windows. Row retention is not byte cost or measured dollar savings. The seed 42 result is a single computer sample; the app also shows a 40-seed mean and spread, plus separate row-level sampling. Fanout misses repetition on an existing edge, including the documented cluster 21 attack. See [`results/LIMITATIONS.md`](results/LIMITATIONS.md).
 
+## Live preview
+
+![Hosted CyberFlight Story page](docs/images/hosted-story.png)
+
+Actual hosted Story page at a narrow browser viewport.
+
+![Hosted triage with a live Gemini proposal](docs/images/hosted-triage.png)
+
+Actual hosted live-plan response; a successful request displays Source: live Gemini.
+
 ## Explore the app
 
 | Page | What it shows |
@@ -76,7 +86,7 @@ The key is read from the environment, ignored local `.env`, or Streamlit secrets
 
 With a key configured, turn **Demo mode (cached LLM)** off and click **Review plan**. A successful request displays **Source: live Gemini**. Missing cached responses, API errors, quota limits, or deadlines produce an explicit fixed-policy fallback. Requests allow sixty seconds per attempt and one retry. Provider-facing schemas omit unsupported `additionalProperties`; local Pydantic validation still rejects unexpected fields and invalid types.
 
-A live planner request and the actual triage button were tested successfully with strict response validation. Temporary provider overload can still cause fallbacks. **Live grounded Q&A and the full batch LLM evaluation remain untested.** No improvement over the fixed rule is demonstrated; the LLM is an explanation and triage assistant.
+Live planner requests and the actual triage button were tested successfully both locally and on Streamlit Community Cloud with strict response validation. Temporary provider overload can still cause fallbacks. **Live grounded Q&A and the full batch LLM evaluation remain untested.** No improvement over the fixed rule is demonstrated; the LLM is an explanation and triage assistant.
 
 For offline evaluation, run locally with your key:
 
@@ -153,9 +163,9 @@ python -m pytest -q
 
 **34 tests passed locally**, covering detector edges, streaming/batch agreement, inclusive windows, reference outputs, planner schemas and mocked retries, validator bounds and budgets, source-cell refusal, and AppTest checks for all six pages. UI regressions cover triage default/filter/n/a behavior, heatmap category order, static variants, cumulative timeline layout, pooled totals, and unsupported Q&A refusal. Original outputs and Story/Limitations pages are protected by SHA-256 regression tests.
 
-GitHub Actions is configured to run the offline test suite on pushes and pull requests using Python 3.13. A local pass does not establish that CI or deployment has run. See [`VALIDATION.json`](VALIDATION.json) and [`TESTED_VERSIONS.json`](TESTED_VERSIONS.json).
+GitHub Actions is configured to run the offline test suite on pushes and pull requests using Python 3.13. The offline suite also passed in GitHub Actions on Linux with Python 3.13. See [`VALIDATION.json`](VALIDATION.json) and [`TESTED_VERSIONS.json`](TESTED_VERSIONS.json).
 
-Measured Story execution under Windows AppTest was 7.02 seconds initially and 0.069 seconds warm after lazy imports. The requested cold-start target below three seconds was not met in that environment. These timings include the test harness and are not browser paint measurements. A Docker build remains untested. Hosted browser verification is recorded in `VALIDATION.json`.
+Measured Story execution under Windows AppTest was 7.02 seconds initially and 0.069 seconds warm after lazy imports. The requested cold-start target below three seconds was not met in that environment. These timings include the test harness and are not browser paint measurements. A Docker build remains untested. All six hosted pages rendered, demo-mode unsupported-question refusal was verified, and a hosted live Gemini plan succeeded. Provider overload also exercised the visible fallback. Details are recorded in `VALIDATION.json`.
 
 ## Deploy
 

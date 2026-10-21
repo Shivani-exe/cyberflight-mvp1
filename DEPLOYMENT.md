@@ -1,5 +1,9 @@
 # Deployment
 
+**Live app:** https://cyberflight-mvp1.streamlit.app/
+
+Deployed from `main` with Python 3.13. All six pages rendered in hosted browser checks, demo-mode unsupported Q&A was refused, and a live Gemini triage request succeeded. The owner-approved key and model are held in encrypted hosting secrets; no key is committed. See `VALIDATION.json` for remaining untested items.
+
 ## Streamlit Community Cloud
 
 After this project is pushed to GitHub, sign in at https://share.streamlit.io/ and create an app with these settings:
@@ -15,7 +19,7 @@ The repository includes `app_data/` and `results/`; the hosted app does not need
 
 For a public demonstration, launch with no secrets: cached/fixed mode works without a provider key. For live Gemini, the account owner can set `GEMINI_API_KEY` and optionally `GEMINI_MODEL` in the host's secrets settings using `.streamlit/secrets.toml.example` as the format. Do not paste `.env` directly into TOML settings. Turn off Demo mode to make a live request. A host-side key can incur provider usage from app visitors; keep it out of Git and choose access and quota settings appropriate for your audience.
 
-Deployment is complete only after the hosted URL loads all six pages and a no-key fallback works. A local test pass does not confirm hosting success. Live planner generation was verified locally; full batch LLM evaluation and live grounded Q&A remain untested.
+Deployment is complete only after the hosted URL loads all six pages and a no-key fallback works. A local test pass does not confirm hosting success. Live planner generation was verified locally and on the hosted app; full batch LLM evaluation and live grounded Q&A remain untested.
 
 Official guide: https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy
 

@@ -10,10 +10,10 @@
   "triage_fallback": "passed",
   "offline_qa": "passed",
   "warm_story_seconds": 0.069,
-  "pytest": "33 passed",
+  "pytest": "34 passed locally and in GitHub Actions on Linux",
   "reference_checks": "6 passed",
-  "live_gemini": "Live planner request succeeded with strict Pydantic validation after removing unsupported provider schema additionalProperties; grounded QA live behavior and batch evaluation remain untested.",
-  "github_publication": "not performed",
+  "live_gemini": "Local and hosted planner requests succeeded; provider overload fallback also observed.",
+  "github_publication": "https://github.com/Shivani-exe/cyberflight-mvp1",
   "cold_start_target_met": false,
   "ui_regressions": {
     "all_six_pages": "passed",
@@ -24,5 +24,19 @@
     "cumulative_timeline": "passed",
     "unsupported_qa_refusal": "passed",
     "original_results_and_story_limitations_hashes": "unchanged"
+  },
+  "deployment": {
+    "url": "https://cyberflight-mvp1.streamlit.app/",
+    "provider": "Streamlit Community Cloud",
+    "python": "3.13",
+    "pages": "Story, comparison, timeline, triage, Ask the results, Limitations rendered",
+    "unsupported_question_refusal": "Verified in hosted demo mode",
+    "live_planner": "Source: live Gemini verified on hosted triage; JSON validated and deterministic verdict rendered",
+    "key_storage": "Host encrypted secrets only; excluded from Git",
+    "remaining_untested": [
+      "Live grounded Q&A model behavior",
+      "Full batch LLM evaluation",
+      "Docker image build"
+    ]
   }
 }
