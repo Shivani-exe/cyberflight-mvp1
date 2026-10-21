@@ -31,10 +31,10 @@ if key and not demo:
 elif not demo:
     st.sidebar.warning('Set GEMINI_API_KEY in the environment or local secrets.')
 st.sidebar.caption('Proposals are simulated; collection is never changed.')
-pages = [st.Page('pages/story.py',title='Story',default=True),
-         st.Page('pages/comparison.py',title='Policy comparison'),
-         st.Page('pages/timeline.py',title='Computer timeline'),
-         st.Page('pages/triage.py',title='Alert triage'),
-         st.Page('pages/ask.py',title='Ask the results'),
-         st.Page('pages/limitations.py',title='Limitations')]
+pages = [st.Page('views/story.py',title='Story',default=True),
+         st.Page('views/comparison.py',title='Policy comparison'),
+         st.Page('views/timeline.py',title='Computer timeline'),
+         st.Page('views/triage.py',title='Alert triage'),
+         st.Page('views/ask.py',title='Ask the results'),
+         st.Page('views/limitations.py',title='Limitations')]
 st.navigation(pages).run()

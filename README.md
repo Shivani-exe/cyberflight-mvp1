@@ -1,5 +1,10 @@
 # CyberFlight
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://cyberflight-mvp1.streamlit.app/)
+[![Tests](https://github.com/Shivani-exe/cyberflight-mvp1/actions/workflows/tests.yml/badge.svg)](https://github.com/Shivani-exe/cyberflight-mvp1/actions/workflows/tests.yml)
+
+**[Live app](https://cyberflight-mvp1.streamlit.app/) · [Source repository](https://github.com/Shivani-exe/cyberflight-mvp1)**
+
 A Streamlit research demo for retaining authentication-log evidence at lower storage cost, with a guarded Gemini assistant for alert triage.
 
 CyberFlight keeps a seeded baseline sample. When a computer reaches suspicious destination fanout, it escalates that computer to full retention and includes a pre-alert flight-recorder buffer. The app compares **rows stored** with **labeled attack rows retained**. It never changes a real collection system.
@@ -146,22 +151,22 @@ The pipeline stops if reference counts do not reproduce. The original auth log i
 python -m pytest -q
 ```
 
-**33 tests passed locally**, covering detector edges, streaming/batch agreement, inclusive windows, reference outputs, planner schemas and mocked retries, validator bounds and budgets, source-cell refusal, and AppTest checks for all six pages. UI regressions cover triage default/filter/n/a behavior, heatmap category order, static variants, cumulative timeline layout, pooled totals, and unsupported Q&A refusal. Original outputs and Story/Limitations pages are protected by SHA-256 regression tests.
+**34 tests passed locally**, covering detector edges, streaming/batch agreement, inclusive windows, reference outputs, planner schemas and mocked retries, validator bounds and budgets, source-cell refusal, and AppTest checks for all six pages. UI regressions cover triage default/filter/n/a behavior, heatmap category order, static variants, cumulative timeline layout, pooled totals, and unsupported Q&A refusal. Original outputs and Story/Limitations pages are protected by SHA-256 regression tests.
 
 GitHub Actions is configured to run the offline test suite on pushes and pull requests using Python 3.13. A local pass does not establish that CI or deployment has run. See [`VALIDATION.json`](VALIDATION.json) and [`TESTED_VERSIONS.json`](TESTED_VERSIONS.json).
 
-Measured Story execution under Windows AppTest was 7.02 seconds initially and 0.069 seconds warm after lazy imports. The requested cold-start target below three seconds was not met in that environment. These timings include the test harness and are not browser paint measurements. Browser pixel layout, a Docker build, and hosted deployment are not yet verified.
+Measured Story execution under Windows AppTest was 7.02 seconds initially and 0.069 seconds warm after lazy imports. The requested cold-start target below three seconds was not met in that environment. These timings include the test harness and are not browser paint measurements. A Docker build remains untested. Hosted browser verification is recorded in `VALIDATION.json`.
 
 ## Deploy
 
 See [`DEPLOYMENT.md`](DEPLOYMENT.md) for Streamlit Community Cloud and Docker instructions. For Community Cloud use repository `Shivani-exe/cyberflight-mvp1`, branch `main`, entrypoint `app/streamlit_app.py`, and Python 3.13. No secrets are needed for a cached/fixed public demo. Put any hosting key in the platform's secrets settings, never in the repository.
 
-Deployment status must be verified using a real hosted URL; no deployment badge or demo link is claimed until it exists.
+The app is deployed on [Streamlit Community Cloud](https://cyberflight-mvp1.streamlit.app/) from this repository. The hosted runtime uses Python 3.13. The page sources live under `app/views/` so Streamlit does not treat them as legacy auto-discovered pages before entrypoint initialization on a fresh deep link. PyArrow is pinned to 24.0.0 to match the hosting platform’s compatibility replacement of version 26.
 
 ## Project structure
 
 ```text
-app/                    Streamlit entrypoint, shared loaders, six pages
+app/                    Streamlit entrypoint, shared loaders, six views in app/views/
 src/cyberflight/         Detector, simulation, held-out selection, guarded LLM layer
 scripts/                Pipeline, additional held-out evaluation, real LLM-cache builder
 app_data/               Precomputed alerts, indexes, per-computer aggregates

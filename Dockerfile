@@ -1,7 +1,8 @@
 FROM python:3.13-slim
 WORKDIR /app
 ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
-COPY requirements.txt .
+COPY requirements.txt pyproject.toml README.md ./
+COPY src ./src
 RUN pip install -r requirements.txt
 COPY . .
 RUN useradd --create-home appuser && chown -R appuser:appuser /app

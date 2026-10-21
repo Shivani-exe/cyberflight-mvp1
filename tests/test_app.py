@@ -24,8 +24,14 @@ def app(monkeypatch):
 
 @pytest.mark.parametrize('page', ['story','comparison','timeline','triage','ask','limitations'])
 def test_six_pages(app, page):
-    app.switch_page(f'pages/{page}.py').run()
+    app.switch_page(f'views/{page}.py').run()
     assert not app.exception
+
+
+def test_explicit_navigation_avoids_legacy_page_autodiscovery():
+    # A fresh deep link must bootstrap the entrypoint before rendering a view.
+    assert not (ROOT/'app/pages').exists()
+    assert (ROOT/'app/views/story.py').exists()
 
 
 def select(app, label):
@@ -33,7 +39,7 @@ def select(app, label):
 
 
 def test_triage_default_filter_and_na(app):
-    app.switch_page('pages/triage.py').run()
+    app.switch_page('views/triage.py').run()
     assert select(app, 'Cluster').value == 14
     assert select(app, 'Computer').value == 'C17693'
     assert app.radio[0].value == 'Attacker alerts'
@@ -52,7 +58,7 @@ def test_triage_default_filter_and_na(app):
 
 
 def test_comparison_heatmap_variants_and_totals(app):
-    app.switch_page('pages/comparison.py').run()
+    app.switch_page('views/comparison.py').run()
     assert len(select(app, 'Static variant').options) == 3
     for option in select(app, 'Static variant').options:
         select(app, 'Static variant').set_value(option).run()
@@ -73,7 +79,7 @@ def test_comparison_heatmap_variants_and_totals(app):
 
 
 def test_timeline_cumulative_and_no_overlapping_annotations(app):
-    app.switch_page('pages/timeline.py').run()
+    app.switch_page('views/timeline.py').run()
     chart=json.loads(app.get('plotly_chart')[0].proto.spec)
     assert all(trace['type']=='scatter' and trace['mode']=='lines' for trace in chart['data'])
     assert not chart['layout'].get('annotations')
@@ -81,7 +87,7 @@ def test_timeline_cumulative_and_no_overlapping_annotations(app):
 
 
 def test_ask_results_refuses_unsupported_question(app):
-    app.switch_page('pages/ask.py').run()
+    app.switch_page('views/ask.py').run()
     app.text_input[0].set_value('What is the price of a flight to Mars?').run()
     app.button[0].click().run()
     assert not app.exception
@@ -91,7 +97,9 @@ def test_ask_results_refuses_unsupported_question(app):
 def test_original_numbers_and_honest_pages_unchanged():
     original=json.loads((ROOT/'tests/original_results_sha256.json').read_text())
     for path, expected in original.items():
-        assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == expected, path
+        # The baseline manifest was captured on Windows; resolve it on Linux too.
+        portable_path = path.replace('\\', '/').replace('app/pages/', 'app/views/')
+        assert hashlib.sha256((ROOT/portable_path).read_bytes()).hexdigest() == expected, path
 
 
 def test_equal_rule_uses_cluster_means_and_cost_tiebreak():

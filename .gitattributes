@@ -1,5 +1,5 @@
 # Reference tests verify original output bytes on Windows and Linux.
 results/** -text
-app/pages/story.py -text
-app/pages/limitations.py -text
+app/views/story.py -text
+app/views/limitations.py -text
 *.parquet binary

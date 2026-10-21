@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cyberflight-mvp1"
+version = "0.1.0"
+description = "Evidence-aware log retention with reproducible evaluation and guarded Gemini triage"
+readme = "README.md"
+requires-python = ">=3.13"
+
+[tool.setuptools.packages.find]
+where = ["src"]
