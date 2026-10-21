@@ -64,7 +64,7 @@ Copy `.env.example` to `.env` locally, then set:
 
 ```dotenv
 GEMINI_API_KEY=your-local-key
-GEMINI_MODEL=
+GEMINI_MODEL=gemini-3.8-flash
 ```
 
 The key is read from the environment, ignored local `.env`, or Streamlit secrets. If `GEMINI_MODEL` is absent, the official Google Gen AI SDK lists models and chooses the newest numbered Flash text model supporting `generateContent`. The sidebar allows an override. Model availability depends on the account.
